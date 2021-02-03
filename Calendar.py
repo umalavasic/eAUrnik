@@ -5,6 +5,7 @@
 
 from ics import Calendar, Event
 import datetime
+import pytz
 
 def make(parsed, monday):
     calendar = Calendar()
@@ -26,8 +27,9 @@ def make(parsed, monday):
                 subtitle = lesson[1]
                 
                 duration = durations[lesson_index]
-                start = datetime.datetime(day.year, day.month, day.day, duration[0][0], duration[0][1])
-                end = datetime.datetime(day.year, day.month, day.day, duration[1][0], duration[1][1])
+                timezone = pytz.timezone("Europe/Ljubljana")
+                start = datetime.datetime(day.year, day.month, day.day, duration[0][0], duration[0][1], tzinfo = timezone)
+                end = datetime.datetime(day.year, day.month, day.day, duration[1][0], duration[1][1], tzinfo = timezone)
 
                 event = Event()
                 event.name = title
@@ -39,4 +41,4 @@ def make(parsed, monday):
     return calendar
 
 def string(calendar):
-    return "\n".join(calendar)
+    return "".join(calendar)
