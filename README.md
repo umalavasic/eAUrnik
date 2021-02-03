@@ -1,18 +1,14 @@
 # eAUrnik
 
-REST API za urnike iz eAsistenta v formatu iCal, napisan v Pythonu 3. Vrne urnik za akutalni teden, od sobote naprej pa za naslednji.
+REST API za urnike iz eAsistenta v formatu iCalendar. Vrne urnik za akutalni teden, od sobote naprej pa za naslednji.
 
 ## Namestitev
 
-### Kaj potrebujem?
-
-Potrebne knjižnjice, ki se jih namesti z ukazom:
+Potrebne knjižnjice se namesti z ukazom:
 
 ```
-pip install flask_restful icalendar lxml requests
+pip install flask_restful ics lxml requests
 ```
-
-### Kaj potem?
 
 Za namen razvoja se strežnik lahko izvaja lokalno. Lokalni strežnik zaženemo z ukazom:
 
@@ -20,23 +16,23 @@ Za namen razvoja se strežnik lahko izvaja lokalno. Lokalni strežnik zaženemo 
 python API.py
 ```
 
-Za dolgoročno uporabo se API naloži na strežnik (npr. online strežniška storitev [Heroku](https://www.heroku.com)). [Več o tem](https://medium.com/@ashiqgiga07/deploying-rest-api-based-flask-app-on-heroku-part-1-cb43a14c50c).
+Za dolgoročno uporabo se API naloži na strežnik (npr. strežniška storitev [Heroku](https://www.heroku.com)). [Več o tem](https://medium.com/@ashiqgiga07/deploying-rest-api-based-flask-app-on-heroku-part-1-cb43a14c50c).
 
 ## Uporaba
 
 Povezava na urnik v eAsistentu je strukturirana sledeče:
 
 ```
-https://www.easistent.com/urniki/ŠOLA/razredi/RAZRED/dijak/DIJAK
+https://www.easistent.com/urniki/SCHOOL/razredi/CLASS/dijak/STUDENT
 ```
 
 Enako URL strukturo uporablja tudi eAUrnik. Primer uporabe lokalnega *development* strežnika:
 
 ```
-http://127.0.0.1:5000/urniki/ŠOLA/razredi/RAZRED/dijak/DIJAK
+http://127.0.0.1:5000/urniki/SCHOOL/razredi/CLASS/dijak/STUDENT
 ```
 
-Povezava vodi do .ICS datoteke z aktualnim tedenskim urnikom za podane parametre o šoli, razredu in dijaku.
+Povezava vodi do .ics datoteke z aktualnim tedenskim urnikom za podane parametre o šoli, razredu in dijaku.
 
 ## Contributing
 

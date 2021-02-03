@@ -1,3 +1,7 @@
+#
+#  Parser.py
+#  eAUrnik
+#
 
 from lxml import html
 
@@ -20,7 +24,7 @@ def parse_block(block):
         subtitle = ""
     return (title, subtitle)
 
-def parse(page):
+def lessons(page):
     tree = html.fromstring(page.content)
     if not tree.body.xpath("table"):
         return
