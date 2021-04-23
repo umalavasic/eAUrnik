@@ -4,8 +4,8 @@
 #
 
 from ics import Calendar, Event
-import datetime
-import pytz
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 
 def make(parsed, monday):
     calendar = Calendar()
@@ -19,7 +19,7 @@ def make(parsed, monday):
         
     data = parsed[1]
     for day_index in range(0, len(data)):
-        day = monday + datetime.timedelta(days = day_index)
+        day = monday + timedelta(days = day_index)
         lessons = data[day_index]
         for lesson_index in range(0, len(lessons)):
             for lesson in lessons[lesson_index]:
@@ -27,9 +27,9 @@ def make(parsed, monday):
                 subtitle = lesson[1]
                 
                 duration = durations[lesson_index]
-                timezone = pytz.timezone("Europe/Ljubljana")
-                start = datetime.datetime(day.year, day.month, day.day, duration[0][0], duration[0][1], tzinfo = timezone)
-                end = datetime.datetime(day.year, day.month, day.day, duration[1][0], duration[1][1], tzinfo = timezone)
+                timezone = ZoneInfo("Europe/Ljubljana")
+                start = datetime(day.year, day.month, day.day, duration[0][0], duration[0][1], tzinfo = timezone)
+                end = datetime(day.year, day.month, day.day, duration[1][0], duration[1][1], tzinfo = timezone)
 
                 event = Event()
                 event.name = title
@@ -38,7 +38,7 @@ def make(parsed, monday):
                 event.end = end
                 calendar.events.add(event)
 
-    return calendar
+    return string(calendar)
 
 def string(calendar):
     return "".join(calendar)

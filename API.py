@@ -12,7 +12,9 @@ api = Api(app)
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return make_response("The request could not be processed. Check the provided information and try again.", 500)
+    response = make_response("This request could not be processed. Check the provided information and try again.", 400)
+    response.headers["content-type"] = "application/json"
+    return response
 
 class handle(Resource):
     def get(self, school, class_, student):

@@ -25,7 +25,7 @@ def parse_block(block):
     return (title, subtitle)
 
 def lessons(page):
-    tree = html.fromstring(page.content)
+    tree = html.fromstring(page)
     if not tree.body.xpath("table"):
         return
     table = tree.body.xpath("table")[0]
