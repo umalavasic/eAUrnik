@@ -28,9 +28,17 @@ def get(school, class_, student):
             
     session = requests.Session()
     session.get("https://www.easistent.com")
+    
+    # Remove all cookies except "vxcaccess", as they cause further requests to be rejected.
+    for cookie in session.cookies:
+        name = cookie.name
+        if name != "vxcaccess":
+            session.cookies.pop(name)
+            
     URL = "https://www.easistent.com/urniki/izpis/" + school + "/" + str(class_) + "/0/0/0/" + str(week) + "/" + str(student)
-    page = session.get(URL)
-    lessons = Parser.lessons(page)
+    response = session.get(URL)
+    
+    lessons = Parser.lessons(response.content)
     timetable = Calendar.make(lessons, monday)
     
-    return Calendar.string(timetable)
+    return timetable
