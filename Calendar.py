@@ -9,6 +9,7 @@ from zoneinfo import ZoneInfo
 
 def make(parsed, monday):
     calendar = Calendar()
+    calendar.creator = "eAUrnik - Fork me on GitHub: https://git.io/JO5Za"
     
     durations = []
     for duration in parsed[0]:
