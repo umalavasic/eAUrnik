@@ -16,6 +16,9 @@ def parse_block(block):
     #     title += " (N)"
     if "ednevnik-seznam_ur_teden-td-zaposlitev" in class_attribute:
         title += " (Z)"
+    icon = block.xpath("table/tr/td[2]/img")
+    if icon and icon[0].get("title") in ["JV", "PB"]:
+        return
     if block.xpath("div"):
         subtitle_unformatted = block.xpath("div")[0].text.strip()
         subtitle_components = subtitle_unformatted.split(", ")
