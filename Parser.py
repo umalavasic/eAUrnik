@@ -37,7 +37,7 @@ def lessons(page):
     for i in range(1, len(lines)):
         coloumns = lines[i].xpath("td")
 
-        duration = coloumns[0].xpath("div[2]")[0].text
+        duration = "0" + coloumns[0].xpath("div[2]")[0].text
         durations.append(duration)
 
         rows = []
